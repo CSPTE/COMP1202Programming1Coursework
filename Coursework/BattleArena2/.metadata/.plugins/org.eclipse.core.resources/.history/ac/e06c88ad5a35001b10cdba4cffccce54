@@ -1,0 +1,30 @@
+
+public class AEStudent extends Student {
+	public AEStudent(String inputName) {
+		super(inputName, 6, 7, 7, 5, 10);
+		//name, hp, atk, def, spd, kp
+	}
+	/**
+	 * 25% full KP, 25% full heal, 50% take damage,
+	 * @throws KPException
+	 * @throws CharacterDeadException
+	 */
+	public void spaceExploration() throws KPException, CharacterDeadException {
+		
+	}
+	/**
+	 * Revives a dead team mate, and gives them full health
+	 * @throws KPException
+	 * @throws CharacterDeadException
+	 */
+	public void alienVial(Character friend) throws KPException, CharacterDeadException {
+		if((this.getHP() > 0) && (getKP() == getMaxKP()) && (friend.getHP() <= 0)) {
+			this.increaseEP(4);
+			friend.increaseHP(maxHP);
+		} else if(getKP() != getMaxKP()) {
+	           throw new KPException("Not enough KP");
+		} else if(getHP() <= 0) {
+			throw new CharacterDeadException("Character is Dead");
+		}
+	}
+}

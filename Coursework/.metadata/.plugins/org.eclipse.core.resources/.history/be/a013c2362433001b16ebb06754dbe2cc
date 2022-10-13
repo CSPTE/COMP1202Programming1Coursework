@@ -1,0 +1,264 @@
+import java.io.*;
+//import java.util.*;
+public class TowerOfMonsters {
+	BufferedReader reader;
+    String firstLine;
+    boolean isItReady = false;
+    String name, type, strlevel;
+    int level;
+    String[] enemies;
+    String[] enemyName;
+    //ArrayList<Minion> minion = new ArrayList<Minion>();
+    //ArrayList<Boss> boss = new ArrayList<Boss>();
+    Minion minion1;
+	Minion minion2;
+	Minion minion3;
+	Minion minion4;
+	Minion minion5;
+	Boss boss1;
+	Boss boss2;
+	Boss boss3;
+	Boss boss4;
+	Boss boss5;
+	public static void main(String[] args) {
+		AIStudent aistudent1 = new AIStudent("AI1");
+		CSStudent csstudent1 = new CSStudent("CS1");
+		CyberStudent cyberstudent1 = new CyberStudent("Cyber1");
+		SEStudent sestudent1 = new SEStudent("SE1");
+		AIStudent aistudent2 = new AIStudent("AI2");
+		CSStudent csstudent2 = new CSStudent("CS2");
+		CyberStudent cyberstudent2 = new CyberStudent("Cyber2");
+		SEStudent sestudent2 = new SEStudent("SE2");
+		Team playerTeam = new StudentTeam("Fascists");
+		Team firstTeam = new MonsterTeam("Communists");
+		Guild guild1 = new Guild();
+		try {
+			guild1.addMember(aistudent1);
+			guild1.addMember(csstudent1);
+			guild1.addMember(cyberstudent1);
+			guild1.addMember(sestudent1);
+			guild1.addMember(aistudent2);
+			guild1.addMember(csstudent2);
+			guild1.addMember(cyberstudent2);
+			guild1.addMember(sestudent2);
+		} catch (SameCharacterException e) {
+			System.out.println("Exception occured: "+e);
+		}
+		Team chickenDinner;
+		int levelCount = 0;
+		//--------------------------------------------------------------------------------------------
+		playerTeam = guild1.getTeam(firstTeam);
+		TowerOfMonsters tom = new TowerOfMonsters();
+		tom.fileReader("EnemyWaves.txt");
+		chickenDinner = playerTeam;
+		while((tom.fileIsReady() == true)&&(chickenDinner == playerTeam)) {
+			tom.makeEnemyTeam(firstTeam);
+			//guild1.resetGuild();
+			playerTeam.clearTeam();
+			playerTeam = guild1.getTeam(firstTeam);
+			Battle battle = new Battle(playerTeam, firstTeam);
+			System.out.println("----------------------------------------------------------------------------");
+			System.out.println("Level " + (levelCount+1));
+			System.out.println("----------------------------------------------------------------------------");
+			chickenDinner = battle.fight();
+			levelCount = levelCount + 1;
+		}
+		System.out.println("Your first Team died");
+		playerTeam.clearTeam();
+		playerTeam = guild1.getTeam(firstTeam);
+		Battle battle1 = new Battle(playerTeam, firstTeam);
+		System.out.println("----------------------------------------------------------------------------");
+		System.out.println("Level " + levelCount);
+		System.out.println("----------------------------------------------------------------------------");
+		chickenDinner = battle1.fight();
+		while((tom.fileIsReady() == true)&&(chickenDinner == playerTeam)) {
+			tom.makeEnemyTeam(firstTeam);
+			Battle battle = new Battle(playerTeam, firstTeam);
+			System.out.println("----------------------------------------------------------------------------");
+			System.out.println("Level " + levelCount);
+			System.out.println("----------------------------------------------------------------------------");
+			chickenDinner = battle.fight();
+			levelCount = levelCount + 1;
+		}
+		System.out.println("Congratulations! You reached level " + levelCount);
+	}
+	public void fileReader(String file) {
+        try{
+           reader = new BufferedReader(new FileReader(file));
+        } catch(Exception m){
+           System.out.println("Exception occured: "+m);
+        }
+    }
+    public String getLine() {
+        try{
+            firstLine = reader.readLine();
+        } catch(Exception m){
+            System.out.println("Exception occured: "+m);
+        }
+        return firstLine;
+    }
+    public boolean fileIsReady() {
+        try{
+            if(reader.ready()){
+                isItReady = true;
+            } else {
+                isItReady = false;
+            }
+        } catch(Exception m){
+            System.out.println("Exception occured: "+m);
+            //return m;
+        }
+        return isItReady;
+    }
+    public Team makeEnemyTeam(Team enemyTeam){
+    	fileIsReady();
+    	minion1 = null;
+    	minion2 = null;
+    	minion3 = null;
+    	minion4 = null;
+    	minion5 = null;
+    	boss1 = null;
+    	boss2 = null;
+    	boss3 = null;
+    	boss4 = null;
+    	boss5 = null;
+    	enemyTeam.clearTeam();
+    	if (isItReady == true) {
+    		getLine();
+    		//System.out.println(firstLine);
+            enemies = firstLine.split(";");
+            for (int i=0; i<5; i++) {
+            	enemyName = enemies[i].split("\\(");
+            	name = enemyName[0];
+            	enemyName = enemyName[1].split(",");
+            	type = enemyName[0];
+            	enemyName = enemyName[1].split("\\)");
+            	strlevel = enemyName[0];
+            	//System.out.println(strlevel);
+            	//System.out.println(name);
+            	//System.out.println(type);
+            	if(strlevel.equals("1")) {
+            		level = 1;
+            	} else if(strlevel.equals("2")){
+            		level = 2;
+            		//System.out.println("Ya did it");
+            	} else if(strlevel.equals("3")){
+            		level = 3;
+            	} else if(strlevel.equals("4")){
+            		level = 4;
+            	} else if(strlevel.equals("5")){
+            		level = 5;
+            	} else if(strlevel.equals("6")){
+            		level = 6;
+            	} else if(strlevel.equals("7")){
+            		level = 7;
+            	} else if(strlevel.equals("8")){
+            		level = 8;
+            	} else if(strlevel.equals("9")){
+            		level = 9;
+            	}
+            	if (type.equals("Minion")) {
+            		if(minion1 == null) {
+            			//System.out.println(name + type);
+        				minion1 = new Minion(name);
+        				//System.out.println(minion1.level);
+        				enemyTeam.addMember(minion1);
+        				//System.out.println(minion1.level);
+        				//System.out.println();
+        				if(level != 1) {
+        					//System.out.println(level);
+        					for(int j=1; j<level;j++) {
+        						//System.out.println(minion1.level);
+        						minion1.increaseEP(10000);
+        						//System.out.println(minion1.level);
+        					}
+        				}
+        				//System.out.println(minion1.level);
+        			} else if (minion2 == null) {
+        				minion2 = new Minion(name);
+        				enemyTeam.addMember(minion2);
+        				if(level != 1) {
+        					for(int j=1; j<level;j++) {
+        						minion2.increaseEP(10000);
+        					}
+        				}
+        			} else if (minion3 == null) {
+        				minion3 = new Minion(name);
+        				enemyTeam.addMember(minion3);
+        				if(level != 1) {
+        					for(int j=1; j<level;j++) {
+        						minion3.increaseEP(10000);
+        					}
+        				}
+        			} else if (minion4 == null) {
+        				minion4 = new Minion(name);
+        				enemyTeam.addMember(minion4);
+        				if(level != 1) {
+        					for(int j=1; j<level;j++) {
+        						minion4.increaseEP(10000);
+        					}
+        				}
+        			} else if (minion5 == null) {
+        				//System.out.println(name + type);
+        				minion5 = new Minion(name);
+        				enemyTeam.addMember(minion5);
+        				if(level != 1) {
+        					for(int j=1; j<level;j++) {
+        						minion5.increaseEP(10000);
+        					}
+        				}
+        			}	
+            	}
+            	if (type.equals("Boss")) {
+            		//System.out.println(name);
+            		if(boss1 == null) {
+            			//System.out.println(name + type);
+        				boss1 = new Boss(name);
+        				enemyTeam.addMember(boss1);
+        				if(level != 1) {
+        					for(int j=1; j<level;j++) {
+        						boss1.increaseEP(10000);
+        					}
+        				}
+        			} else if (boss2 == null) {
+        				boss2 = new Boss(name);
+        				enemyTeam.addMember(boss2);
+        				if(level != 1) {
+        					for(int j=1; j<level;j++) {
+        						boss2.increaseEP(10000);
+        					}
+        				}
+        			} else if (boss3 == null) {
+        				boss3 = new Boss(name);
+        				enemyTeam.addMember(boss3);
+        				if(level != 1) {
+        					for(int j=1; j<level;j++) {
+        						boss3.increaseEP(10000);
+        					}
+        				}
+        			} else if (boss4 == null) {
+        				boss4 = new Boss(name);
+        				enemyTeam.addMember(boss4);
+        				if(level != 1) {
+        					for(int j=1; j<level;j++) {
+        						boss4.increaseEP(10000);
+        					}
+        				}
+        			} else if (boss5 == null) {
+        				boss5 = new Boss(name);
+        				enemyTeam.addMember(boss5);
+        				if(level != 1) {
+        					for(int j=1; j<level;j++) {
+        						boss5.increaseEP(10000);
+        					}
+        				}
+        			}
+            	}
+            	/*System.out.println(name);
+            	System.out.println(type);
+            	System.out.println(level);*/
+            }
+    	}
+        return enemyTeam;
+    }
+}

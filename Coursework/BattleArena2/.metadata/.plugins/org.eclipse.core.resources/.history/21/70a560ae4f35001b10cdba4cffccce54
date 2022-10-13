@@ -1,0 +1,37 @@
+
+public class BEStudent extends Student{
+	public BEStudent(String inputName) {
+		super(inputName, 8, 2, 6, 4, 10);
+		//name, hp, atk, def, spd, kp
+	}
+	public void secondChance() throws KPException, CharacterDeadException {
+		if((getHP() > 0) && (getKP() == getMaxKP())) {
+			this.increaseEP(4);
+			for (Character friend : getTeam().getMembers()) {
+    			if(friend.getHP() <= 0) {
+    				friend.increaseHP(1);
+    			}
+    		}
+			zeroKP();
+		} else if(getKP() != getMaxKP()) {
+	           throw new KPException("Not enough KP");
+		} else if(getHP() <= 0) {
+			throw new CharacterDeadException("Character is Dead");
+		}
+	}
+	public void doubleHeal(Character friend) throws KPException, CharacterDeadException {
+		if((this.getHP() > 0) && (getKP() == getMaxKP()) && (friend.getHP() > 0)) {
+			this.increaseEP(4);
+			getDefence();
+			friend.increaseHP(getDefence());
+			this.increaseHP(getDefence());
+			this.zeroKP();
+		} else if (getKP() != getMaxKP()) {
+	           throw new KPException("Not enough KP, Character is Dead or Friend is Dead");
+		} else if(friend.getHP() <= 0) {
+			throw new CharacterDeadException("Friend is Dead");
+		} else if(getHP() <= 0) {
+			throw new CharacterDeadException("Character is Dead");
+		}
+	}
+}

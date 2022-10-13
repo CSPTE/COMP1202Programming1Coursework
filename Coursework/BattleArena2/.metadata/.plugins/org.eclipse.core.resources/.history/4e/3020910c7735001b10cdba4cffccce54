@@ -1,0 +1,14 @@
+
+public class ElectricalStudent extends Student{
+	public ElectricalStudent(String inputName) {
+		super(inputName, 10, 10, 10, 8, 2);
+		//name, hp, atk, def, spd, kp
+	}
+	//lifesteal
+	public void energyTransfer() throws KPException, CharacterDeadException  {
+		
+	}
+	public void electricShield() {
+		
+	}
+}

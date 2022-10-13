@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=SEStudent
+comment1.params=inputName
+comment1.target=SEStudent(java.lang.String)
+comment2.params=enemy
+comment2.target=int\ groupWork(Character)
+comment3.params=
+comment3.target=void\ groupDiscussion()
+numComments=4

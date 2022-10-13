@@ -1,0 +1,63 @@
+
+public class MechStudent extends Student {
+	public MechStudent(String inputName) {
+		super(inputName, 6, 7, 7, 5, 3);
+		//name, hp, atk, def, spd, kp
+	}
+	/**
+	 * if dead team mate, create a robot
+	 * @throws KPException
+	 * @throws CharacterDeadException
+	 */
+	public void robotInvasion() throws KPException, CharacterDeadException {
+		
+	}
+	/**
+	 * Half attack for enemy team
+	 */
+	public void arniOtlet1() {
+		
+	}
+	/**
+	 * small chance to move again
+	 */
+	public void arniOtlet2() {
+		
+	}
+	/**
+	 * lifeSteal
+	 */
+	public void patrikOtlet1() {
+		
+	}
+	/**
+	 * transform enemy into sheep
+	 */
+	public void patrikOtlet2() {
+		
+	}
+	/**
+	 * 50% kill enemy, 50% kill team mate
+	 */
+	public void patrikOtlet3() {
+		
+	}
+	/**
+	 * heal team mate to max
+	 */
+	public void arniotlet3() {
+		
+	}
+	/**
+	 * deal damage to all characters - inferno
+	 */
+	public void patrikOtlet4() {
+		
+	}
+	/**
+	 * mini inferno
+	 */
+	public void patrikOtlet5() {
+		
+	}
+}

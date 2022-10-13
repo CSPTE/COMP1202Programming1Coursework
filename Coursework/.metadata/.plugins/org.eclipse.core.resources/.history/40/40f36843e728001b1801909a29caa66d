@@ -1,0 +1,114 @@
+//import java.util.*;
+public class StudentTeam extends Team {
+	public StudentTeam(String inputName) {
+		super(inputName);
+	}
+	void move(Character member, Team enemyTeam) throws Exception {
+		if (member.currentHP > 0) {
+			Character target = null;
+			Character reserve;
+			Character needsHelp = null;
+			Character strongestFriend = null;
+			int lessThanHalfHP = 0;
+			for (Character enemy : enemyTeam.getMembers()) { //select random enemy alive
+				if(enemy.currentHP > 0) {
+					target = enemy;
+				}
+			}
+			for (Character strongest : member.hisTeam.getMembers()) { //select random friend alive that's not member
+				if((member != strongest) && (strongest.currentHP > 0)) {
+					strongestFriend = strongest;
+				}
+			}
+			for (Character enemy : enemyTeam.getMembers()) { //find boss or weakest minion alive
+				if((enemy instanceof Boss) && (enemy.currentHP > 0)) {
+					target = enemy;
+					break;
+				} else if((!(target instanceof Boss)) && (enemy.currentHP > 0)) {
+					reserve = enemy;
+					if(reserve.currentHP < target.currentHP) {
+						target = reserve;
+					}
+				}
+			}
+			if (target.currentHP <= 0) { //enemy is dead exception
+				throw new CharacterDeadException("Enemy is Dead");
+			}
+			for (Character strong : member.hisTeam.getMembers()) { //find strongest friend alive
+				if ((strong != member) && (strong.currentHP > 0)) {
+					if (strong.currentAtk > strongestFriend.currentAtk) {
+						strongestFriend = strong;
+					}
+				}
+			}
+			if (strongestFriend.currentHP <= 0) { //friend is dead exception
+				throw new CharacterDeadException("Friend is Dead");
+			}
+			if (member instanceof AIStudent) {
+				if(member.currentHP >= (member.maxHP/2)) {
+					if(((Student) member).currentKP == ((Student) member).maxKP) {
+						((AIStudent) member).machineLearning(target);
+					} else {
+						((Student) member).javaProgramming(target);
+					}
+				} else if(((Student) member).currentKP == ((Student) member).maxKP) {
+					((AIStudent) member).naturalLanguageProcessing();
+				} else {
+					((Student) member).selfStudy();
+				}
+			}
+			if (member instanceof CSStudent) {
+				if(member.currentHP >= (member.maxHP/2)) {
+					if (((Student) member).currentKP == ((Student) member).maxKP) {
+						for (Character friend : member.hisTeam.getMembers()) {
+							if((friend.currentHP >= (friend.maxHP/2)) && (friend != member)) {
+								needsHelp = friend;
+							}
+							if(needsHelp == member) {
+								throw new SameCharacterException("Character and Friend are the same character");
+							}
+							if(needsHelp != null) {
+								((CSStudent) member).support(needsHelp);
+							} else {
+								((CSStudent) member).pairWorking(strongestFriend, target);
+							}
+						}//not max KP
+					} else {
+						((Student) member).javaProgramming(target);
+					}//less Than half HP
+				} else {
+					((Student) member).selfStudy();
+				}
+			}
+			if (member instanceof SEStudent) {
+				for (Character friend : member.hisTeam.getMembers()) {
+					if(friend.currentHP >= (friend.maxHP/2)) {
+						lessThanHalfHP = lessThanHalfHP + 1;
+					}
+				}
+				if(lessThanHalfHP >= 2) {
+					if(((Student) member).currentKP == ((Student) member).maxKP) {
+						((SEStudent) member).groupDiscussion();
+					}
+				} else if(member.currentHP >= (member.maxHP/2)) {
+					((Student) member).selfStudy();
+				} else if(((Student) member).currentKP == ((Student) member).maxKP) {
+					
+				}
+			}
+			if (member instanceof CyberStudent) {
+				if(member.currentHP >= (member.maxHP/2)) {
+					if(((Student) member).currentKP == ((Student) member).maxKP) {
+						((CyberStudent) member).cyberAttack(enemyTeam);
+					} else {
+						((Student) member).javaProgramming(target);
+					}
+				} else {
+					((Student) member).selfStudy();
+				}
+			}
+		} else if(member.currentHP <= 0) {
+			throw new CharacterDeadException("Character is Dead");
+		}
+	}
+}

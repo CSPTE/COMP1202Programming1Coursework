@@ -1,0 +1,373 @@
+
+public class Test {
+	public static void main(String[] args) {
+		//part 1
+		/*Character firstCharacter = new Character("Adolf",10,10,10,10);
+		Character secondCharacter = new Character("Benito",5,5,5,5);
+		Character thirdCharacter = new Character("Castro",10,10,10,10);
+		Character forthCharacter = new Character("Daniel",10,10,10,10);
+		Character fifthCharacter = new Character("Elemer",10,10,10,10);
+		Character sixthCharacter = new Character("Francis",10,10,10,10);
+		Team firstTeam = new Team("Nazis");
+		//firstCharacter.increaseEP(12);
+		System.out.println("Max HP = " + firstCharacter.getMaxHP());
+		System.out.println("Current HP = " + firstCharacter.getHP());
+		System.out.println("Attack = " + firstCharacter.getAttack());
+		System.out.println("Defence = " + firstCharacter.getDefence());
+		System.out.println("Speed = " + firstCharacter.getSpeed());
+		System.out.println("Target EP = " + firstCharacter.getTargetEP());
+		System.out.println("Increase EP");
+		firstCharacter.increaseEP(6);
+		System.out.println("Max HP = " + firstCharacter.getMaxHP());
+		System.out.println("Attack = " + firstCharacter.getAttack());
+		System.out.println("Defence = " + firstCharacter.getDefence());
+		System.out.println("Speed = " + firstCharacter.getSpeed());
+		System.out.println("Target EP = " + firstCharacter.getTargetEP());
+		System.out.println("Current EP = " + firstCharacter.getEP());
+		System.out.println("Current HP before increase = " + firstCharacter.getHP());
+		System.out.println("Increase HP ");
+		firstCharacter.increaseHP(5);
+		System.out.println("Current HP after increase = " + firstCharacter.getHP());
+		System.out.println("Decrease HP ");
+		firstCharacter.decreaseHP(5);
+		System.out.println("Current HP after decrease = " + firstCharacter.getHP());
+		System.out.println("Increase HP ");
+		firstCharacter.increaseHP(10);
+		System.out.println("Current HP after increase = " + firstCharacter.getHP());
+		
+		//System.out.println("Characters team = " + firstCharacter.getTeam());
+		System.out.println("Team members before adding = " + firstTeam.getMembers());
+		System.out.println("Which member = " + firstTeam.addMember(firstCharacter));
+		System.out.println("Team members after adding = " + firstTeam.getMembers());
+		firstCharacter.setTeam(firstTeam);
+		System.out.println("Characters team = " + firstCharacter.getTeam());
+		System.out.println("Try to add member again = " + firstTeam.addMember(firstCharacter));
+		//System.out.println("Which member = " + firstTeam.addMember(firstCharacter));s
+		System.out.println("Which member = " + firstTeam.addMember(secondCharacter));
+		System.out.println("Which member = " + firstTeam.addMember(thirdCharacter));
+		System.out.println("Which member = " + firstTeam.addMember(forthCharacter));
+		System.out.println("Which member = " + firstTeam.addMember(fifthCharacter));
+		System.out.println("Add sixth member = " + firstTeam.addMember(sixthCharacter));
+		System.out.println("Team members after adding = " + firstTeam.getMembers()); */
+		
+		//--------------------------------------------------------------------------------------------------
+		
+		//part2 - 3
+		/*AIStudent aistudent1 = new AIStudent("Adolf");
+		CSStudent csstudent1 = new CSStudent("Benito");
+		CyberStudent cyberstudent1 = new CyberStudent("Castro");
+		SEStudent sestudent1 = new SEStudent("Daniel");
+		AIStudent aistudent2 = new AIStudent("Elenore");
+		CSStudent csstudent2 = new CSStudent("Fidel");
+		CyberStudent cyberstudent2 = new CyberStudent("Gastro");
+		SEStudent sestudent2 = new SEStudent("Hitler");
+		Minion minion1 = new Minion("Inna");
+		Boss boss1 = new Boss("Joker");
+		Team firstTeam = new Team("Nazis");
+		Team secondTeam = new Team("Dictators");
+		Team thirdTeam = new Team("Communists");
+		aistudent1.setTeam(firstTeam);
+		csstudent1.setTeam(firstTeam);
+		cyberstudent1.setTeam(firstTeam);
+		sestudent1.setTeam(firstTeam);
+		aistudent2.setTeam(secondTeam);
+		csstudent2.setTeam(secondTeam);
+		cyberstudent2.setTeam(secondTeam);
+		sestudent2.setTeam(secondTeam);
+		minion1.setTeam(thirdTeam);
+		boss1.setTeam(thirdTeam);
+		System.out.println("Current HP AI = " + aistudent1.getHP());
+		System.out.println("Current HP CS = " + csstudent1.getHP());
+		System.out.println("Current HP Cyber = " + cyberstudent1.getHP());
+		System.out.println("Current HP SE = " + sestudent1.getHP());
+		aistudent1.decreaseHP(5);
+		System.out.println("Current HP after decrease AI = " + aistudent1.getHP());
+		csstudent1.decreaseHP(5);
+		System.out.println("Current HP after decrease CS = " + csstudent1.getHP());
+		cyberstudent1.decreaseHP(5);
+		System.out.println("Current HP after decrease Cyber = " + cyberstudent1.getHP());
+		sestudent1.decreaseHP(5);
+		System.out.println("Current HP after decrease SE = " + sestudent1.getHP());
+		System.out.println("Current HP AI = " + aistudent2.getHP());
+		System.out.println("Current HP CS = " + csstudent2.getHP());
+		System.out.println("Current HP Cyber = " + cyberstudent2.getHP());
+		System.out.println("Current HP SE = " + sestudent2.getHP());
+		System.out.println("Current HP Minion = " + minion1.getHP());
+		minion1.decreaseHP(3);
+		System.out.println("Current HP Boss = " + boss1.getHP());
+		//System.out.println("Current HP Boss = " + boss1.getSpeed());
+		System.out.println("");*/
+		
+		// ------------------------------------------------------------------------------------------------
+		
+		//part2
+		//Self Study Test - done
+		/*System.out.println("Current EP AI = " + aistudent1.getEP());
+		System.out.println("Current KP AI = " + aistudent1.getKP());
+		aistudent1.selfStudy();
+		System.out.println("Current HP after increase AI = " + aistudent1.getHP());
+		System.out.println("Current EP = " + aistudent1.getEP());
+		System.out.println("Current KP = " + aistudent1.getKP());*/
+		
+		//KP increase Test - done
+		/*System.out.println("Current KP AI = " + aistudent1.getKP());
+		aistudent1.increaseKP(4);
+		System.out.println("Current KP AI = " + aistudent1.getKP());*/
+		
+		//Java Programming test - done
+		/*System.out.println("Current HP SE = " + sestudent1.getHP());
+		System.out.println("Current EP SE = " + sestudent1.getEP());
+		System.out.println("Current KP SE = " + sestudent1.getKP());
+		System.out.println("Current EP AI = " + aistudent1.getEP());
+		System.out.println("Current KP AI = " + aistudent1.getKP());
+		//System.out.println("Attack AI = " + aistudent1.getAttack());
+		//System.out.println("Defence SE = " + sestudent1.getDefence());
+		System.out.println("Java Programming");
+		aistudent1.javaProgramming(sestudent1);
+		System.out.println("Current EP AI = " + aistudent1.getEP());
+		System.out.println("Current KP AI = " + aistudent1.getKP());
+		System.out.println("Current EP SE = " + sestudent1.getEP());
+		System.out.println("Current KP SE = " + sestudent1.getKP());
+		System.out.println("Current HP after decrease SE = " + sestudent1.getHP());*/
+		
+		//Natural Language Processing - done
+		/*aistudent1.increaseKP(4);
+		try{
+			aistudent1.naturalLanguageProcessing();
+	        } catch(Exception m){
+	           System.out.println("Exception occured: "+m);
+	        }
+		System.out.println("Current HP after increase AI = " + aistudent1.getHP());
+		System.out.println("Current KP AI = " + aistudent1.getKP());
+		System.out.println("Current EP AI = " + aistudent1.getEP());*/
+		
+		//Machine Learning - done
+		/*aistudent1.increaseKP(4);
+		sestudent1.increaseEP(10);
+		System.out.println("Current HP SE = " + sestudent1.getHP());
+		System.out.println("Current EP AI = " + aistudent1.getEP());
+		System.out.println("Current KP AI = " + aistudent1.getKP());
+		System.out.println("Machine Learning");
+		aistudent1.machineLearning(sestudent1);
+		System.out.println("Current EP AI = " + aistudent1.getEP());
+		System.out.println("Current KP AI = " + aistudent1.getKP());
+		System.out.println("Current HP after decrease SE = " + sestudent1.getHP());*/
+		
+		//CyberAttack - done
+		/*cyberstudent1.increaseKP(10);
+		System.out.println("Current HP AI = " + aistudent2.getHP());
+		System.out.println("Current HP CS = " + csstudent2.getHP());
+		System.out.println("Current HP Cyber = " + cyberstudent2.getHP());
+		System.out.println("Current HP SE = " + sestudent2.getHP());
+		System.out.println("Current EP Cyber = " + cyberstudent1.getEP());
+		System.out.println("Current KP Cyber = " + cyberstudent1.getKP());
+		System.out.println("CyberAttack");
+		cyberstudent1.cyberAttack(secondTeam);
+		System.out.println("Current HP AI = " + aistudent2.getHP());
+		System.out.println("Current HP CS = " + csstudent2.getHP());
+		System.out.println("Current HP Cyber = " + cyberstudent2.getHP());
+		System.out.println("Current HP SE = " + sestudent2.getHP());
+		System.out.println("Current EP Cyber = " + cyberstudent1.getEP());
+		System.out.println("Current KP Cyber = " + cyberstudent1.getKP());*/
+		
+		//pair working - done
+		/*csstudent1.increaseKP(10);
+		sestudent2.increaseEP(10);
+		System.out.println("Current EP CS = " + csstudent1.getEP());
+		System.out.println("Current KP CS = " + csstudent1.getKP());
+		System.out.println("Current HP SE = " + sestudent2.getHP());
+		System.out.println("Pair Working");
+		csstudent1.pairWorking(sestudent1,sestudent2);
+		System.out.println("Current HP SE = " + sestudent2.getHP());
+		System.out.println("Current EP CS = " + csstudent1.getEP());
+		System.out.println("Current KP CS = " + csstudent1.getKP());*/
+		
+		//support - done
+		/*csstudent1.increaseKP(10);
+		System.out.println("Current HP CS = " + csstudent1.getHP());
+		System.out.println("Current EP CS = " + csstudent1.getEP());
+		System.out.println("Current KP CS = " + csstudent1.getKP());
+		System.out.println("Current HP SE = " + sestudent1.getHP());
+		System.out.println("Support");
+		csstudent1.support(sestudent1);
+		System.out.println("Current EP CS = " + csstudent1.getEP());
+		System.out.println("Current KP CS = " + csstudent1.getKP());
+		System.out.println("Current HP SE = " + sestudent1.getHP());*/
+		
+		//Group Discussion - done
+		/*sestudent1.increaseKP(10);
+		System.out.println("Current HP AI = " + aistudent1.getHP());
+		System.out.println("Current HP CS = " + csstudent1.getHP());
+		System.out.println("Current HP Cyber = " + cyberstudent1.getHP());
+		System.out.println("Current HP SE = " + sestudent1.getHP());
+		System.out.println("Current EP CS = " + sestudent1.getEP());
+		System.out.println("Current KP CS = " + sestudent1.getKP());
+		System.out.println("Group Discussion");
+		sestudent1.groupDiscussion();
+		System.out.println("Current HP AI = " + aistudent1.getHP());
+		System.out.println("Current HP CS = " + csstudent1.getHP());
+		System.out.println("Current HP Cyber = " + cyberstudent1.getHP());
+		System.out.println("Current HP SE = " + sestudent1.getHP());
+		System.out.println("Current EP CS = " + sestudent1.getEP());
+		System.out.println("Current KP CS = " + sestudent1.getKP());*/
+		
+		//Group Work - done
+		/*sestudent1.increaseKP(10);
+		sestudent2.increaseEP(10);
+		sestudent2.increaseEP(20);
+		sestudent2.increaseEP(30);
+		System.out.println("Current EP SE1 = " + sestudent1.getEP());
+		System.out.println("Current KP SE1 = " + sestudent1.getKP());
+		System.out.println("Current HP SE2 = " + sestudent2.getHP());
+		System.out.println("Group Work");
+		sestudent1.groupWork(sestudent2);
+		System.out.println("Current EP SE1 = " + sestudent1.getEP());
+		System.out.println("Current KP SE1 = " + sestudent1.getKP());
+		System.out.println("Current HP SE2 = " + sestudent2.getHP());*/
+		
+		//--------------------------------------------------------------------------------------------------
+		
+		//part3
+		//Syntax Error - done
+		//System.out.println(aistudent1.getRandomNumber());
+		/*System.out.println("Current EP Minion = " + minion1.getEP());
+		System.out.println("Current EP SE = " + sestudent2.getEP());
+		System.out.println("Current KP SE1 = " + sestudent2.getKP());
+		System.out.println("Current HP SE2 = " + sestudent2.getHP());
+		System.out.println("Syntax Error");
+		minion1.SyntaxError(sestudent2);
+		System.out.println("Current EP Minion = " + minion1.getEP());
+		System.out.println("Current EP SE = " + sestudent2.getEP());
+		System.out.println("Current KP SE1 = " + sestudent2.getKP());
+		System.out.println("Current HP SE2 = " + sestudent2.getHP());*/
+		
+		//NullPointerException - done
+		/*System.out.println("Current EP Minion = " + minion1.getEP());
+		System.out.println("Current HP Minion = " + minion1.getHP());
+		minion1.NullPointerException();
+		System.out.println("Current EP Minion = " + minion1.getEP());
+		System.out.println("Current HP Minion = " + minion1.getHP());*/
+		
+		//ArrayIndexOutOfBoundException - done
+		/*System.out.println("Current EP Minion = " + minion1.getEP());
+		System.out.println("Current EP SE2 = " + sestudent2.getEP());
+		System.out.println("Current KP SE2 = " + sestudent2.getKP());
+		System.out.println("Current HP SE2 = " + sestudent2.getHP());
+		System.out.println("Syntax Error");
+		minion1.ArrayIndexOutOfBoundException(sestudent2);
+		System.out.println("Current EP Minion = " + minion1.getEP());
+		System.out.println("Current EP SE2 = " + sestudent2.getEP());
+		System.out.println("Current KP SE2 = " + sestudent2.getKP());
+		System.out.println("Current HP SE2 = " + sestudent2.getHP());*/
+		
+		//NoneTermination - done
+		//System.out.println(boss1.getTeam().name);
+		/*System.out.println("Current HP Minion = " + minion1.getHP());
+		minion1.decreaseHP(6);
+		System.out.println("Current HP Minion = " + minion1.getHP());
+		System.out.println("Current EP Boss = " + boss1.getEP());
+		System.out.println("None Termination");
+		boss1.NoneTermination();
+		System.out.println("Current HP Minion = " + minion1.getHP());
+		System.out.println("Current EP Boss = " + boss1.getEP());*/
+		
+		//ConcurrentModificationException - done
+		/*System.out.println("Current HP AI = " + aistudent2.getHP());
+		System.out.println("Current HP CS = " + csstudent2.getHP());
+		System.out.println("Current HP Cyber = " + cyberstudent2.getHP());
+		System.out.println("Current HP SE = " + sestudent2.getHP());
+		System.out.println("Current EP Boss = " + boss1.getEP());
+		System.out.println("Current KP SE2 = " + aistudent2.getKP());
+		System.out.println("Current KP SE2 = " + csstudent2.getKP());
+		System.out.println("Current KP SE2 = " + cyberstudent2.getKP());
+		System.out.println("Current KP SE2 = " + sestudent2.getKP());
+		System.out.println("Concurrent Modification Exception");
+		boss1.ConcurrentModificationException(secondTeam);
+		System.out.println("Current HP AI = " + aistudent2.getHP());
+		System.out.println("Current HP CS = " + csstudent2.getHP());
+		System.out.println("Current HP Cyber = " + cyberstudent2.getHP());
+		System.out.println("Current HP SE = " + sestudent2.getHP());
+		System.out.println("Current EP Boss = " + boss1.getEP());
+		System.out.println("Current KP SE2 = " + aistudent2.getKP());
+		System.out.println("Current KP SE2 = " + csstudent2.getKP());
+		System.out.println("Current KP SE2 = " + cyberstudent2.getKP());
+		System.out.println("Current KP SE2 = " + sestudent2.getKP());*/
+		
+		//strike - done
+		//boss1.strike(sestudent2);
+		
+		//------------------------------------------------------------------------------------------------
+		
+		//part4
+		AIStudent aistudent1 = new AIStudent("Adolf");
+		CSStudent csstudent1 = new CSStudent("Benito");
+		CyberStudent cyberstudent1 = new CyberStudent("Castro");
+		SEStudent sestudent1 = new SEStudent("Daniel");
+		AIStudent aistudent2 = new AIStudent("Elenore");
+		CSStudent csstudent2 = new CSStudent("Fidel");
+		CyberStudent cyberstudent2 = new CyberStudent("Gastro");
+		SEStudent sestudent2 = new SEStudent("Hitler");
+		//Minion minion1 = new Minion("Inna");
+		//Boss boss1 = new Boss("Joker");
+		Team firstTeam = new StudentTeam("Nazis");
+		Team secondTeam = new StudentTeam("Fasists");
+		aistudent1.setTeam(firstTeam);
+		csstudent1.setTeam(firstTeam);
+		cyberstudent1.setTeam(firstTeam);
+		sestudent1.setTeam(firstTeam);
+		//aistudent2.setTeam(secondTeam);
+		csstudent2.setTeam(secondTeam);
+		cyberstudent2.setTeam(secondTeam);
+		sestudent2.setTeam(secondTeam);
+		System.out.println("Current HP AI1 = " + aistudent1.getHP());
+		System.out.println("Current HP CS1 = " + csstudent1.getHP());
+		System.out.println("Current HP Cyber1 = " + cyberstudent1.getHP());
+		System.out.println("Current HP SE1 = " + sestudent1.getHP());
+		//aistudent1.decreaseHP(5);
+		System.out.println("Current HP after decrease AI1 = " + aistudent1.getHP());
+		csstudent1.decreaseHP(5);
+		System.out.println("Current HP after decrease CS1 = " + csstudent1.getHP());
+		cyberstudent1.decreaseHP(5);
+		System.out.println("Current HP after decrease Cyber1 = " + cyberstudent1.getHP());
+		sestudent1.decreaseHP(5);
+		System.out.println("Current HP after decrease SE1 = " + sestudent1.getHP());
+		System.out.println("Current HP AI2 = " + aistudent2.getHP());
+		System.out.println("Current HP CS2 = " + csstudent2.getHP());
+		System.out.println("Current HP Cyber2 = " + cyberstudent2.getHP());
+		System.out.println("Current HP SE2 = " + sestudent2.getHP());
+		System.out.println("");
+		
+		//AI - selfStudy-done, naturalLanguageProcessing-done, javaProgramming
+		
+		//aistudent1.increaseKP(10);
+		System.out.println("AI1, KP = LOW, HP = HIGH");
+		System.out.println("Current HP AI1 = " + aistudent1.getHP());
+		System.out.println("Current EP AI1 = " + aistudent1.getEP());
+		System.out.println("Current KP AI1 = " + aistudent1.getKP());
+		System.out.println("");
+		try {
+			firstTeam.move(aistudent1, secondTeam);
+		} catch (Exception m) {
+			System.out.println("Exception occured: "+m);
+		}
+		System.out.println("Current HP AI1 = " + aistudent1.getHP());
+		System.out.println("Current EP AI1 = " + aistudent1.getEP());
+		System.out.println("Current KP AI1 = " + aistudent1.getKP());
+		System.out.println("Current HP CS2 = " + csstudent2.getHP());
+		
+		/*csstudent1.increaseKP(10);
+		sestudent2.increaseEP(10);
+		System.out.println("Current EP CS = " + csstudent1.getEP());
+		System.out.println("Current KP CS = " + csstudent1.getKP());
+		System.out.println("Current HP SE = " + sestudent2.getHP());
+		System.out.println("Pair Working");
+		try {
+		csstudent1.pairWorking(sestudent1,sestudent2);
+		    } catch(Exception m){
+	           System.out.println("Exception occured: "+m);
+	        }
+		System.out.println("Current HP SE = " + sestudent2.getHP());
+		System.out.println("Current EP CS = " + csstudent1.getEP());
+		System.out.println("Current KP CS = " + csstudent1.getKP());*/
+	}
+}

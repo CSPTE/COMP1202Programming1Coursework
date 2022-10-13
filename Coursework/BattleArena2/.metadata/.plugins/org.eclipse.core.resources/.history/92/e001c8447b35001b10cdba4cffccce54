@@ -1,0 +1,7 @@
+
+public class ElectronicStudent extends Student {
+	public ElectronicStudent(String inputName) {
+		super(inputName, 10, 10, 10, 10, 2);
+		//name, hp, atk, def, spd, kp
+	}
+}

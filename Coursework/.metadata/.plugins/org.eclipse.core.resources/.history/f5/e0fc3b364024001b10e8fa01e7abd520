@@ -1,0 +1,34 @@
+
+public class AIStudent extends Student {
+	public AIStudent (String inputName) {
+		super(inputName, 6, 7, 7, 5, 3);
+		//name, hp, atk, def, spd, kp
+		/*this.name = inputName;
+		this.baseHP = 6;
+		this.baseAtk = 7;
+		this.baseDef = 7;
+		this.baseSpd = 5;
+		this.maxKP = 3;*/
+	}
+	public int machineLearning(Character enemy) {
+		if((this.currentHP > 0) && (currentKP == maxKP)) {
+			this.increaseEP(4);
+			this.currentKP = 0;
+			enemy.currentHP = (int) Math.round(((100 * this.currentAtk)/(100 + enemy.currentDef)*2));
+			if (enemy.currentHP == 0) {
+				this.increaseEP(4);
+			}
+		}
+		return enemy.currentHP;
+	}
+	public int naturalLanguageProcessing() {
+		if((currentHP > 0) && (currentKP == maxKP)) {
+			//this.getMaxHP();
+			getDefence();
+			increaseHP(currentDef);
+			this.increaseEP(4);
+			currentKP = 0;
+		}
+		return currentHP;
+	}
+}

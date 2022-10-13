@@ -1,0 +1,7 @@
+
+public class SameCharacterException {
+	SameCharacterException(String z){
+		super(z);
+
+	}
+}

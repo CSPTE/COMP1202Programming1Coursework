@@ -1,0 +1,6 @@
+
+public class BEStudent extends Student{
+	public BEStudent() {
+		
+	}
+}

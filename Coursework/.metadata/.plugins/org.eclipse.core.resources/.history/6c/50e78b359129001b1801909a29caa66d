@@ -1,0 +1,10 @@
+
+public class Guild {
+	//String name;
+	public Guild() {
+		
+	}
+	public void addMember() {
+		
+	}
+}

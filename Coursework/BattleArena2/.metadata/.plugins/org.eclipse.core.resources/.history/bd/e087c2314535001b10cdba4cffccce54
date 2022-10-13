@@ -1,0 +1,6 @@
+
+public class MechStudent extends Student {
+	public MechStudent() {
+		
+	}
+}

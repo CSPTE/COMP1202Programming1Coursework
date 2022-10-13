@@ -1,0 +1,13 @@
+
+public class BEStudent extends Student{
+	public BEStudent(String inputName) {
+		super(inputName, 8, 2, 8, 4, 10);
+		//name, hp, atk, def, spd, kp
+	}
+	public void secondChance() throws KPException, CharacterDeadException {
+		
+	}
+	public void doubleHeal() {
+		
+	}
+}

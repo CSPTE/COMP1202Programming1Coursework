@@ -1,0 +1,49 @@
+
+public class Student extends Character {
+	int maxKP;
+	int currentKP = 0;
+	public Student(String inputName, int inputBaseHP, int inputBaseAtk, int inputBaseDef, int inputBaseSpd, int inputMaxKP) {
+		super(inputName, inputBaseHP, inputBaseAtk, inputBaseDef, inputBaseSpd);
+		maxKP = inputMaxKP;
+	}
+	public int increaseKP(int kpIncreaseAmmount) {
+		if ((kpIncreaseAmmount > 0) && (currentKP + kpIncreaseAmmount <= maxKP )) {
+			currentKP = currentKP + kpIncreaseAmmount;
+		} else if ((kpIncreaseAmmount > 0) && (currentKP + kpIncreaseAmmount > maxKP )) {
+			currentKP = maxKP;
+		}
+		return currentKP;
+	}
+	public void javaProgramming(Character enemy) {
+		if (this.currentHP > 0) {
+			this.increaseEP(3);
+			this.increaseKP(1);
+			getAttack();
+			enemy.getDefence();
+			int damageDone = (int) Math.round((100 * currentAtk) / (100 + enemy.currentDef));
+			//System.out.println("Damage done = " + damageDone);
+			enemy.currentHP = enemy.currentHP - damageDone;
+			enemy.increaseEP(2);
+			if (enemy instanceof Student) {
+				((Student) enemy).increaseKP(3);
+			}
+			if (enemy.currentHP <= 0) {
+				this.increaseEP(4);
+			}
+			if (enemy.currentHP < 0) {
+				enemy.currentHP = 0;
+			}
+		}
+		//return enemy.currentHP;
+	}
+	public void selfStudy() {
+		if (currentHP > 0) {
+			increaseHP(2);
+			increaseEP(6);
+			increaseKP(2);
+		}
+	}
+	public int getKP() {
+		return currentKP;
+	}
+}

@@ -1,0 +1,23 @@
+
+public class ElectricalStudent extends Student{
+	public ElectricalStudent(String inputName) {
+		super(inputName, 10, 10, 10, 8, 2);
+		//name, hp, atk, def, spd, kp
+	}
+	//lifesteal
+	public void energyTransfer(Character enemy) throws KPException, CharacterDeadException {
+		if((getHP() > 0) && (getKP() == getMaxKP()) && (enemy.getHP() > 0)) {
+			getDefence();
+			increaseHP(getDefence());
+			this.increaseEP(4);
+			zeroKP();
+		} else if(getKP() != getMaxKP()) {
+	        throw new KPException("Not enough KP");
+		} else if(getHP() <= 0) {
+			throw new CharacterDeadException("Character is Dead");
+		}
+	}
+	public void electricShield() {
+		
+	}
+}

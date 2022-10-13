@@ -1,0 +1,7 @@
+
+public class Guild {
+	String name;
+	public Guild() {
+		
+	}
+}

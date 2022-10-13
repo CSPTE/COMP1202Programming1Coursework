@@ -1,0 +1,13 @@
+
+public class AEStudent extends Student {
+	public AEStudent(String inputName) {
+		super(inputName, 6, 7, 7, 5, 3);
+		//name, hp, atk, def, spd, kp
+	}
+	public void spaceExploration() throws KPException, CharacterDeadException {
+		
+	}
+	public void alienVial(Character friend) throws KPException, CharacterDeadException {
+		
+	}
+}

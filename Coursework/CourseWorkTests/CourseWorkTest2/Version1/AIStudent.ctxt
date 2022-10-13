@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=AIStudent
+comment1.params=inputName
+comment1.target=AIStudent(java.lang.String)
+comment2.params=enemy
+comment2.target=void\ machineLearning(Character)
+comment3.params=
+comment3.target=int\ naturalLanguageProcessing()
+numComments=4

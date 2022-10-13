@@ -1,0 +1,107 @@
+
+public class MechStudent extends Student {
+	public MechStudent(String inputName) {
+		super(inputName, 6, 7, 7, 5, 3);
+		//name, hp, atk, def, spd, kp
+	}
+	/**
+	 * Attacks every character on the battlefield with full damage
+	 * @param enemyTeam - the damage will be applied to the members of this team.
+	 * @throws KPException - exception that occurs when a character tries to use an ability without enough KP
+	 * @throws CharacterDeadException - thrown, when the character or the enemy is dead
+	 */
+	public void robotInvasion(Team enemyTeam) throws KPException, CharacterDeadException {
+		if((this.getHP() > 0) && (getKP() == getMaxKP())) {
+			this.increaseEP(4);
+			this.zeroKP();
+			for (Character enemy : enemyTeam.getMembers()) {
+				if(enemy.getHP() > 0) {
+					enemy.getDefence();
+					getAttack();
+					int damageDone = (int) Math.round((100 * getAttack()) / (100 + enemy.getDefence()));
+					enemy.decreaseHP(damageDone);
+					if (enemy.getHP() <= 0) {
+						this.increaseEP(4);
+					}
+					if (enemy.getHP() < 0) {
+						enemy.zeroHP();
+					}
+				}
+	        }
+			for (Character friend : getTeam().getMembers()){
+				if((friend.getHP() > 0) && (friend != this)) {
+					getAttack();
+					friend.getDefence();
+					int damageDone = (int) Math.round((100 * getAttack()) / (100 + friend.getDefence()));
+					friend.decreaseHP(damageDone);
+					if (friend.getHP() <= 0) {
+						this.increaseEP(4);
+					}
+					if (friend.getHP() < 0) {
+						friend.zeroHP();
+					}
+				}
+			}
+		} else if(getKP() != getMaxKP()) {
+	           throw new KPException("Not enough KP or Character is Dead");
+		} else if(getHP() <= 0) {
+			throw new CharacterDeadException("Character is Dead");
+		}
+	}
+	/**
+	 * Attacks enemy at normal damage, and 50% chance to move again
+	 * @throws KPException - exception that occurs when a character tries to use an ability without enough KP
+	 * @throws CharacterDeadException - thrown, when the character or the enemy is dead
+	 */
+	public void automation() throws KPException, CharacterDeadException {
+		
+	}
+	/**
+	 * lifeSteal
+	 */
+	public void patrikOtlet1() {
+		
+	}
+	/**
+	 * transform enemy into sheep
+	 */
+	public void patrikOtlet2() {
+		
+	}
+	/**
+	 * 50% kill enemy, 50% kill team mate
+	 */
+	public void patrikOtlet3() {
+		
+	}
+	/**
+	 * heal team mate to max
+	 */
+	public void arniotlet3() {
+		
+	}
+	/**
+	 * mini inferno
+	 */
+	public void patrikOtlet5() {
+		
+	}
+	/**
+	 * max HP increase until level up
+	 */
+	public void arniOtlet4() {
+		
+	}
+	/**
+	 * Shield (first 5 hp not done to character)
+	 */
+	public void arniOtlet5() {
+		
+	}
+	/**
+	 * deal damage + percentage of enemy HP
+	 */
+	public void arniOtlet6() {
+		
+	}
+}

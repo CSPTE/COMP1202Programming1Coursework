@@ -1,0 +1,10 @@
+
+public class ElectricalStudent extends Student{
+	public ElectricalStudent(String inputName) {
+		super(inputName, 10, 10, 10, 8, 2);
+		//name, hp, atk, def, spd, kp
+	}
+	public void energyTransfer() {
+		
+	}
+}

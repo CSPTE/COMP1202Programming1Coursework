@@ -1,0 +1,56 @@
+
+public class ElectricalStudent extends Student{
+	public ElectricalStudent(String inputName) {
+		super(inputName, 10, 10, 10, 8, 2);
+		//name, hp, atk, def, spd, kp
+	}
+	//lifesteal
+	public void energyTransfer(Character enemy) throws KPException, CharacterDeadException {
+		if((getHP() > 0) && (getKP() == getMaxKP()) && (enemy.getHP() > 0)) {
+			getDefence();
+			increaseHP(getDefence());
+			this.increaseEP(4);
+			this.getAttack();
+			enemy.getDefence();
+			int damageDone = (int) Math.round((100 * getAttack()) / (100 + enemy.getDefence()));
+			enemy.decreaseHP(damageDone);
+			this.zeroKP();
+			if (enemy.getHP() <= 0) {
+				this.increaseEP(4);
+			}
+			if (enemy.getHP() < 0) {
+				enemy.zeroHP();
+			}
+		} else if(getKP() != getMaxKP()) {
+	        throw new KPException("Not enough KP");
+		} else if(getHP() <= 0) {
+			throw new CharacterDeadException("Character is Dead");
+		} else if(enemy.getHP() <= 0) {
+			throw new CharacterDeadException("Enemy is Dead");
+		}
+	}
+	/**
+	 * Checks if character and friend are alive, that the friend isn't the character and that the character has enough KP
+	 * Calculates amount to heal, and applies it to friend
+	 * It throws appropriate exceptions if some conditions are not met.
+	 * @param friend - character which is going to be healed
+	 * @throws KPException - exception that occurs when a character tries to use an ability without enough KP
+	 * @throws CharacterDeadException - thrown, when the character, their friend or the enemy is dead
+	 * @throws SameCharacterException - thrown when the character and their friend are the same character
+	 */
+	public void lifeEnergy(Character friend) throws KPException, CharacterDeadException, SameCharacterException {
+		if((this.getHP() > 0) && (getKP() == getMaxKP()) && (friend.getHP() > 0) && (friend != this)) {
+			this.increaseEP(4);
+			friend.increaseHP(friend.getMaxHP());
+			this.zeroKP();
+		} else if (getKP() != getMaxKP()) {
+	           throw new KPException("Not enough KP, Character is Dead or Friend is Dead");
+		} else if(friend.getHP() <= 0) {
+			throw new CharacterDeadException("Friend is Dead");
+		} else if(getHP() <= 0) {
+			throw new CharacterDeadException("Character is Dead");
+		} else if(friend == this) {
+			throw new SameCharacterException("Character and Friend are the same character");
+		}
+	}
+}

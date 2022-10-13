@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Team
+comment1.params=inputName
+comment1.target=Team(java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=
+comment3.target=Character[]\ getMembers()
+comment4.params=member
+comment4.target=int\ addMember(Character)
+comment5.params=
+comment5.target=void\ chooseRandomMember()
+numComments=6

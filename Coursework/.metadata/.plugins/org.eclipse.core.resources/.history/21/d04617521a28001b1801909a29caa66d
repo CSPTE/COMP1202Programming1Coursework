@@ -1,0 +1,13 @@
+
+public class StudentTeam extends Team {
+	public StudentTeam(String inputName) {
+		super(inputName);
+	}
+	void move(Character member, Team enemyTeam) throws Exception {
+		if (member instanceof AIStudent) {
+			if(((Student) member).currentKP == ((Student) member).maxKP) {
+				
+			}
+		}
+	}
+}

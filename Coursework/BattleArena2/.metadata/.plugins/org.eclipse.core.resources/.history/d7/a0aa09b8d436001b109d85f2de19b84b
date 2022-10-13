@@ -1,0 +1,361 @@
+//import java.util.*;
+public class StudentTeam extends Team {
+	public StudentTeam(String inputName) {
+		super(inputName);
+	}
+	/**
+	 * This method will make each character use an ability.
+	 * First it selects a random enemy,
+	 * Then it selects the weakest enemy by comparing all enemy characters to the randomly selected one,
+	 * Then it does the same to select the strongest friend.
+	 * It throws an exception if the selected enemy is somehow dead.
+	 * Then it checks which type of student the character is.
+	 * The character then uses an ability.
+	 * @param member - the member which uses their ability
+	 * @param enemyTeam - the team on which the ability is used
+	 * @throws Exception - throws KPException, SameCharacterException or CharacterDeadException
+	 */
+	void move(Character member, Team enemyTeam) throws Exception {
+		if (member.getHP() > 0) {
+			Character target = null;
+			Character reserve;
+			Character needsHelp = null;
+			Character strongestFriend = null;
+			int lessThanHalfHP = 0;
+			for (Character enemy : enemyTeam.getMembers()) { 
+				if(enemy.getHP() > 0) {
+					target = enemy;
+				}
+			}
+			for (Character strongest : member.getTeam().getMembers()) { 
+				if((member != strongest) && (strongest.getHP() > 0)) {
+					strongestFriend = strongest;
+				}
+			}
+			for (Character enemy : enemyTeam.getMembers()) { 
+				if((enemy instanceof Boss) && (enemy.getHP() > 0)) {
+					target = enemy;
+					break;
+				} else if((!(target instanceof Boss)) && (enemy.getHP() > 0)) {
+					reserve = enemy;
+					if(reserve.getHP() < target.getHP()) {
+						target = reserve;
+					}
+				}
+			}
+			if (target.getHP() <= 0) { 
+				throw new CharacterDeadException("Enemy is Dead");
+			}
+			for (Character strong : member.getTeam().getMembers()) { 
+				if ((strong != member) && (strong.getHP() > 0)) {
+					strong.getAttack();
+					strongestFriend.getAttack();
+					if (strong.getAttack() > strongestFriend.getAttack()) {
+						strongestFriend = strong;
+					}
+				}
+			}
+			if (member instanceof AIStudent) {
+				aiStudent(member, target);
+			}
+			if (member instanceof CSStudent) {
+				csStudent(member, target, needsHelp, strongestFriend);
+			}
+			if (member instanceof SEStudent) {
+				seStudent(member, target, lessThanHalfHP);
+			}
+			if (member instanceof CyberStudent) {
+				cyberStudent(member, enemyTeam, target);
+			}
+			if (member instanceof MechStudent) {
+				mechStudent(member, enemyTeam, target, lessThanHalfHP);
+			}
+			if (member instanceof ElectronicStudent) {
+				electronicStudent(member, target);
+			}
+			if (member instanceof ElectricalStudent) {
+				electricalStudent(member, target, needsHelp);
+			}
+			if (member instanceof BEStudent) {
+				if(member.getHP() > (member.getMaxHP()/2)) {
+					if(((Student) member).getKP() == ((Student) member).getMaxKP()) {
+						
+					} else {
+						((Student) member).javaProgramming(target);
+						System.out.println(member.getName() + " Used javaProgramming on " + target.getName());
+						System.out.println(target.getName() + " Current HP " + target.getHP());
+					}
+				} else if(((Student) member).getKP() == ((Student) member).getMaxKP()) {
+					((BEStudent) member).doubleHeal();
+					System.out.println(member.getName() + " Used Self Study (healing)");
+					System.out.println(member.getName() + " Current HP " + member.getHP());
+				} else {
+					((Student) member).selfStudy();
+					System.out.println(member.getName() + " Used Self Study (healing)");
+					System.out.println(member.getName() + " Current HP " + member.getHP());
+				}
+			}
+		} else if(member.getHP() <= 0) {
+			throw new CharacterDeadException("Character is Dead");
+		}
+	}
+	/**
+	 * This method selects which ability a ElectricalStudent should use
+	 * First it checks if it is low on health or not.
+	 * Then it checks whether it can use an ability that requires KP
+	 * Lastly it checks whether a character in his team needs healing
+	 * @param member - the character which attacks
+	 * @param target - the enemy which will be attacked from the enemy team
+	 * @param needsHelp - the character that is low on health, and requires healing
+	 * @throws KPException - exception that occurs when a character tries to use an ability without enough KP
+	 * @throws CharacterDeadException - thrown, when the character, their friend or the enemy is dead
+	 * @throws SameCharacterException - thrown when the character and their friend are the same character
+	 */
+	private void electricalStudent(Character member, Character target, Character needsHelp)
+			throws SameCharacterException, KPException, CharacterDeadException {
+		if(member.getHP() > (member.getMaxHP()/2)) {
+			if(((Student) member).getKP() == ((Student) member).getMaxKP()) {
+				for (Character friend : member.getTeam().getMembers()) {
+					if((friend.getHP() <= (friend.getMaxHP()/2)) && (friend != member) && (friend.getHP() > 0)) {
+						needsHelp = friend;
+					}
+				}
+				if(needsHelp == member) {
+					throw new SameCharacterException("Character and Friend are the same character");
+				}
+				if(needsHelp != null) {
+					((ElectricalStudent) member).lifeEnergy(needsHelp);
+					System.out.println(member.getName() + " Used Life Energy on " + needsHelp.getName());
+					System.out.println(needsHelp.getName() + " Current HP " + needsHelp.getHP());
+				} else {
+					((Student) member).javaProgramming(target);
+					System.out.println(member.getName() + " Used javaProgramming on " + target.getName());
+					System.out.println(target.getName() + " Current HP " + target.getHP());
+				}
+			} else {
+				((Student) member).javaProgramming(target);
+				System.out.println(member.getName() + " Used javaProgramming on " + target.getName());
+				System.out.println(target.getName() + " Current HP " + target.getHP());
+			}
+		} else if(((Student) member).getKP() == ((Student) member).getMaxKP()) {
+			((ElectricalStudent) member).energyTransfer(target);
+			System.out.println(member.getName() + " Used Energy Transfer on " + target.getName());
+			System.out.println(target.getName() + " Current HP " + target.getHP());
+			System.out.println(member.getName() + " Current HP " + member.getHP());
+		} else {
+			((Student) member).selfStudy();
+			System.out.println(member.getName() + " Used Self Study (healing)");
+			System.out.println(member.getName() + " Current HP " + member.getHP());
+		}
+	}
+	/**
+	 * This method selects which ability a ElectronicStudent should use
+	 * It checks if it is low on health or not.
+	 * @param member - the character which attacks
+	 * @param target - the enemy which will be attacked from the enemy team
+	 */
+	private void electronicStudent(Character member, Character target) {
+		if(member.getHP() >= (member.getMaxHP()/2)) {
+			((Student) member).javaProgramming(target);
+			System.out.println(member.getName() + " Used javaProgramming on " + target.getName());
+			System.out.println(target.getName() + " Current HP " + target.getHP());
+		} else {
+			((Student) member).selfStudy();
+			System.out.println(member.getName() + " Used Self Study (healing)");
+			System.out.println(member.getName() + " Current HP " + member.getHP());
+		}
+	}
+	/**
+	 * This method selects which ability a MechStudent should use
+	 * First it checks if it is low on health or not.
+	 * Then it checks whether it can use an ability that requires KP
+	 * @param member - the character which attacks
+	 * @param enemyTeam - the team on which the ability is used
+	 * @param target - the enemy which will be attacked from the enemy team
+	 * @param lessThanHalfHP - the number of team mates low on health
+	 * @throws KPException - exception that occurs when a character tries to use an ability without enough KP
+	 * @throws CharacterDeadException - thrown, when the character is dead
+	 * @throws Exception - throws KPException or CharacterDeadException
+	 */
+	private void mechStudent(Character member, Team enemyTeam, Character target, int lessThanHalfHP)
+			throws KPException, CharacterDeadException, Exception {
+		for (Character friend : member.getTeam().getMembers()) {
+			if(friend.getHP() <= (friend.getMaxHP()/2)) {
+				lessThanHalfHP = lessThanHalfHP + 1;
+			}
+		}
+		if(member.getHP() >= (member.getMaxHP()/2)) {
+			if(((Student) member).getKP() == ((Student) member).getMaxKP()) {
+				if(lessThanHalfHP < 2) {
+					((MechStudent) member).robotInvasion(enemyTeam);
+					System.out.println(member.getName() + " Used Robot Invasion ");
+				} else {
+					((MechStudent) member).automation(target);
+					System.out.println(member.getName() + " Used automation on " + target.getName());
+					System.out.println(target.getName() + " Current HP " + target.getHP());
+				}
+			} else {
+				((Student) member).javaProgramming(target);
+				System.out.println(member.getName() + " Used javaProgramming on " + target.getName());
+				System.out.println(target.getName() + " Current HP " + target.getHP());
+			}
+		} else {
+			((Student) member).selfStudy();
+			System.out.println(member.getName() + " Used Self Study (healing)");
+			System.out.println(member.getName() + " Current HP " + member.getHP());
+		}
+	}
+	/**
+	 * This method selects which ability a CyberStudent should use
+	 * First it checks if it is low on health or not.
+	 * Then it checks whether it can use an ability that requires KP
+	 * @param member - the character which attacks
+	 * @param enemyTeam - the team on which the ability is used
+	 * @param target - the enemy which will be attacked from the enemy team
+	 * @throws KPException - exception that occurs when a character tries to use an ability without enough KP
+	 * @throws CharacterDeadException - thrown, when the character is dead
+	 */
+	private void cyberStudent(Character member, Team enemyTeam, Character target)
+			throws KPException, CharacterDeadException {
+		if(member.getHP() >= (member.getMaxHP()/2)) {
+			if(((Student) member).getKP() == ((Student) member).getMaxKP()) {
+				((CyberStudent) member).cyberAttack(enemyTeam);
+				System.out.println(member.getName() + " Used Cyber Attack on enemy team");
+			} else {
+				((Student) member).javaProgramming(target);
+				System.out.println(member.getName() + " Used javaProgramming on " + target.getName());
+				System.out.println(target.getName() + " Current HP " + target.getHP());
+			}
+		} else {
+			((Student) member).selfStudy();
+			System.out.println(member.getName() + " Used Self Study (healing)");
+			System.out.println(member.getName() + " Current HP " + member.getHP());
+		}
+	}
+	/**
+	 * This method selects which ability a SEStudent should use
+	 * First it checks how many other team mates are low on health
+	 * Then it checks if he is low on health or not.
+	 * Then it checks whether it can use an ability that requires KP
+	 * @param member - the character which attacks
+	 * @param target - the enemy which will be attacked from the enemy team
+	 * @param lessThanHalfHP - the number of team mates low on health
+	 * @throws KPException - exception that occurs when a character tries to use an ability without enough KP
+	 * @throws CharacterDeadException - thrown, when the character is dead
+	 */
+	private void seStudent(Character member, Character target, int lessThanHalfHP)
+			throws KPException, CharacterDeadException {
+		for (Character friend : member.getTeam().getMembers()) {
+			if(friend.getHP() <= (friend.getMaxHP()/2)) {
+				lessThanHalfHP = lessThanHalfHP + 1;
+			}
+		}
+		if(lessThanHalfHP >= 2) {
+			if(((Student) member).getKP() == ((Student) member).getMaxKP()) {
+				((SEStudent) member).groupDiscussion();
+				System.out.println(member.getName() + " Used Group Discussion (healing)");
+			} else if(member.getHP() <= (member.getMaxHP()/2)) {
+				((Student) member).selfStudy();
+				System.out.println(member.getName() + " Used Self Study (healing)");
+				System.out.println(member.getName() + " Current HP " + member.getHP());
+			} else {
+				((Student) member).javaProgramming(target);
+				System.out.println(member.getName() + " Used javaProgramming on " + target.getName());
+				System.out.println(target.getName() + " Current HP " + target.getHP());
+			}
+		} else if(member.getHP() <= (member.getMaxHP()/2)) {
+			((Student) member).selfStudy();
+			System.out.println(member.getName() + " Used Self Study (healing)");
+			System.out.println(member.getName() + " Current HP " + member.getHP());
+		} else if(((Student) member).getKP() == ((Student) member).getMaxKP()) {
+			((SEStudent) member).groupWork(target);
+			System.out.println(member.getName() + " Used Group Work on " + target.getName());
+			System.out.println(target.getName() + " Current HP " + target.getHP());
+		} else {
+			((Student) member).javaProgramming(target);
+			System.out.println(member.getName() + " Used javaProgramming on " + target.getName());
+			System.out.println(target.getName() + " Current HP " + target.getHP());
+		}
+	}
+	/**
+	 * This method selects which ability a CSStudent should use
+	 * First it checks if it is low on health or not.
+	 * Then it checks whether it can use an ability that requires KP
+	 * @param member - the character which attacks
+	 * @param target - the enemy which will be attacked from the enemy team
+	 * @param needsHelp - the character that is low on health, and requires healing
+	 * @param strongestFriend - the strongest team mate, which will attack with the CSStudent
+	 * @throws KPException - exception that occurs when a character tries to use an ability without enough KP
+	 * @throws CharacterDeadException - thrown, when the character, their friend or the enemy is dead
+	 * @throws SameCharacterException - thrown when the character and their friend are the same character
+	 */
+	private void csStudent(Character member, Character target, Character needsHelp, Character strongestFriend)
+			throws SameCharacterException, KPException, CharacterDeadException {
+		if(member.getHP() >= (member.getMaxHP()/2)) {
+			if(((Student) member).getKP() == ((Student) member).getMaxKP()) {
+				for (Character friend : member.getTeam().getMembers()) {
+					if((friend.getHP() <= (friend.getMaxHP()/2)) && (friend != member) && (friend.getHP() > 0)) {
+						needsHelp = friend;
+					}
+				}
+				if(needsHelp == member) {
+					throw new SameCharacterException("Character and Friend are the same character");
+				}
+				if(needsHelp != null) {
+					((CSStudent) member).support(needsHelp);
+					System.out.println(member.getName() + " Used support on " + needsHelp.getName());
+					System.out.println(needsHelp.getName() + " Current HP " + needsHelp.getHP());
+				} else if (strongestFriend != null){
+					if (strongestFriend.getHP() <= 0) {
+						throw new CharacterDeadException("Friend is Dead");
+					}
+					((CSStudent) member).pairWorking(strongestFriend, target);
+					System.out.println(member.getName() + " Used pair Working on " + target.getName());
+					System.out.println(target.getName() + " Current HP " + target.getHP());
+				} else {
+					((Student) member).javaProgramming(target);
+					System.out.println(member.getName() + " Used javaProgramming on " + target.getName());
+					System.out.println(target.getName() + " Current HP " + target.getHP());
+				}
+			} else {
+				((Student) member).javaProgramming(target);
+				System.out.println(member.getName() + " Used javaProgramming on " + target.getName());
+				System.out.println(target.getName() + " Current HP " + target.getHP());
+			}
+		} else {
+			((Student) member).selfStudy();
+			System.out.println(member.getName() + " Used Self Study (healing)");
+			System.out.println(member.getName() + " Current HP " + member.getHP());
+		}
+	}
+	/**
+	 * This method selects which ability a AIStudent should use
+	 * First it checks if it is low on health or not.
+	 * Then it checks whether it can use an ability that requires KP
+	 * @param member - the character which attacks
+	 * @param target - the enemy which will be attacked from the enemy team
+	 * @throws KPException - exception that occurs when a character tries to use an ability without enough KP
+	 * @throws CharacterDeadException - thrown, when the character is dead
+	 */
+	private void aiStudent(Character member, Character target) throws KPException, CharacterDeadException {
+		if(member.getHP() >= (member.getMaxHP()/2)) {
+			if(((Student) member).getKP() == ((Student) member).getMaxKP()) {
+				((AIStudent) member).machineLearning(target);
+				System.out.println(member.getName() + " Used machineLearning on " + target.getName());
+				System.out.println(target.getName() + " Current HP " + target.getHP());
+			} else {
+				((Student) member).javaProgramming(target);
+				System.out.println(member.getName() + " Used javaProgramming on " + target.getName());
+				System.out.println(target.getName() + " Current HP " + target.getHP());
+			}
+		} else if(((Student) member).getKP() == ((Student) member).getMaxKP()) {
+			((AIStudent) member).naturalLanguageProcessing();
+			System.out.println(member.getName() + " Used Natural Language Processing (healing)");
+			System.out.println(member.getName() + " Current HP " + member.getHP());
+		} else {
+			((Student) member).selfStudy();
+			System.out.println(member.getName() + " Used Self Study (healing)");
+			System.out.println(member.getName() + " Current HP " + member.getHP());
+		}
+	}
+}

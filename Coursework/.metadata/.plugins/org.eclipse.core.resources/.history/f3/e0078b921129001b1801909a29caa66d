@@ -1,0 +1,20 @@
+
+public class MonsterTeam extends Team{
+	public MonsterTeam(String inputName) {
+		super(inputName);
+	}
+    void move(Character member, Team enemyTeam) throws Exception {
+    	if (member.currentHP > 0) {
+    		Character target = null;
+			Character reserve;
+    		for (Character enemy : enemyTeam.getMembers()) { //select random enemy alive
+				if(enemy.currentHP > 0) {
+					target = enemy;
+				}
+			}
+    		((Monster) member).strike(target);
+    	} else if(member.currentHP <= 0) {
+			throw new CharacterDeadException("Character is Dead");
+		}
+	}
+}

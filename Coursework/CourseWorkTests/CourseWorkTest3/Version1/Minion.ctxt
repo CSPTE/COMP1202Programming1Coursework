@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Minion
+comment1.params=inputName
+comment1.target=Minion(java.lang.String)
+comment2.params=enemy
+comment2.target=void\ strike(Character)
+comment3.params=enemy
+comment3.target=void\ SyntaxError(Character)
+comment4.params=
+comment4.target=void\ NullPointerException()
+comment5.params=enemy
+comment5.target=void\ ArrayIndexOutOfBoundException(Character)
+numComments=6

@@ -1,0 +1,90 @@
+//import java.util.*;
+public class StudentTeam extends Team {
+	public StudentTeam(String inputName) {
+		super(inputName);
+	}
+	void move(Character member, Team enemyTeam) throws Exception {
+		if (member.currentHP > 0) {
+			Character target = null;
+			Character reserve;
+			Character needsHelp = null;
+			Character strongestFriend = null;
+			for (Character enemy : enemyTeam.getMembers()) {
+				target = enemy;
+			}
+			for (Character strongest : member.hisTeam.getMembers()) {
+				if(member != strongest) {
+					strongestFriend = strongest;
+				}
+			}
+			for (Character enemy : enemyTeam.getMembers()) {
+				if(enemy instanceof Boss) {
+					target = enemy;
+				} else if(!(target instanceof Boss)) {
+					reserve = enemy;
+					if(reserve.currentHP < target.currentHP) {
+						target = reserve;
+					}
+				}
+			}
+			if (member instanceof AIStudent) {
+				if(member.currentHP >= (member.maxHP/2)) {
+					if(((Student) member).currentKP == ((Student) member).maxKP) {
+						((AIStudent) member).machineLearning(target);
+					} else {
+						((Student) member).javaProgramming(target);
+					}
+				} else if(((Student) member).currentKP == ((Student) member).maxKP) {
+					((AIStudent) member).naturalLanguageProcessing();
+				} else {
+					((Student) member).selfStudy();
+				}
+			}
+			if (member instanceof CSStudent) {
+				if(member.currentHP >= (member.maxHP/2)) {
+					if (((Student) member).currentKP == ((Student) member).maxKP) {
+						for (Character friend : member.hisTeam.getMembers()) {
+							if((friend.currentHP >= (friend.maxHP/2)) && (friend != member)) {
+								needsHelp = friend;
+							}
+							if(needsHelp != null) {
+								((CSStudent) member).support(needsHelp);
+							} else {
+								for (Character strong : member.hisTeam.getMembers()) {
+									if (strong != member) {
+										if (strong.currentAtk > strongestFriend.currentAtk) {
+											strongestFriend = strong;
+										}
+									}
+								}
+								((CSStudent) member).pairWorking(needsHelp);
+							}
+						}//not max KP
+					} else {
+						((Student) member).javaProgramming(target);
+					}//less Than half HP
+				} else {
+					((Student) member).selfStudy();
+				}
+			}
+			if (member instanceof SEStudent) {
+				if(((Student) member).currentKP == ((Student) member).maxKP) {
+					
+				}
+			}
+			if (member instanceof CyberStudent) {
+				if(member.currentHP >= (member.maxHP/2)) {
+					if(((Student) member).currentKP == ((Student) member).maxKP) {
+						((CyberStudent) member).cyberAttack(enemyTeam);
+					} else {
+						((Student) member).javaProgramming(target);
+					}
+				} else {
+					((Student) member).selfStudy();
+				}
+			}
+		} else if(member.currentHP <= 0) {
+			throw new CharacterDeadException("Character is Dead");
+		}
+	}
+}

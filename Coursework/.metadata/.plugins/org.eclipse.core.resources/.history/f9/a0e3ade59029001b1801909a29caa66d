@@ -1,0 +1,6 @@
+
+public class Guild {
+	public Guild(String inputName) {
+		name = inputName;
+	}
+}

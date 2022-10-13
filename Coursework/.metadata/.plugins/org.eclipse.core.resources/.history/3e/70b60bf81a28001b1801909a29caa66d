@@ -1,0 +1,30 @@
+
+public class StudentTeam extends Team {
+	public StudentTeam(String inputName) {
+		super(inputName);
+	}
+	void move(Character member, Team enemyTeam) throws Exception {
+		if (member instanceof AIStudent) {
+			if(((Student) member).currentKP == ((Student) member).maxKP) {
+				
+			}
+		}
+		if (member instanceof CSStudent) {
+			if(((Student) member).currentKP == ((Student) member).maxKP) {
+				
+			}
+		}
+		if (member instanceof SEStudent) {
+			if(((Student) member).currentKP == ((Student) member).maxKP) {
+				
+			}
+		}
+		if (member instanceof CyberStudent) {
+			if(member.currentHP > (member.maxHP/4)) {
+				if(((Student) member).currentKP == ((Student) member).maxKP) {
+					((CyberStudent) member).cyberAttack(enemyTeam);
+				}
+			}
+		}
+	}
+}

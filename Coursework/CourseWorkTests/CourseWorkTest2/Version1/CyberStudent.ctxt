@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=CyberStudent
+comment1.params=inputName
+comment1.target=CyberStudent(java.lang.String)
+comment2.params=enemyTeam
+comment2.target=void\ cyberAttack(Team)
+numComments=3

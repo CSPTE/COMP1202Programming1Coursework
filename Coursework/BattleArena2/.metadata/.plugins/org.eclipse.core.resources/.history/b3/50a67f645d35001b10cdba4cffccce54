@@ -1,0 +1,39 @@
+
+public class MechStudent extends Student {
+	public MechStudent(String inputName) {
+		super(inputName, 6, 7, 7, 5, 3);
+		//name, hp, atk, def, spd, kp
+	}
+	/**
+	 * if dead team mate, create a robot
+	 * @throws KPException
+	 * @throws CharacterDeadException
+	 */
+	public void robotInvasion() throws KPException, CharacterDeadException {
+		
+	}
+	/**
+	 * Half attack for enemy team
+	 */
+	public void arniOtlet1() {
+		
+	}
+	/**
+	 * 
+	 */
+	public void arniOtlet2() {
+		
+	}
+	/**
+	 * lifeSteal
+	 */
+	public void patrikOtlet1() {
+		
+	}
+	/**
+	 * create minion
+	 */
+	public void patrikOtlet2() {
+		
+	}
+}

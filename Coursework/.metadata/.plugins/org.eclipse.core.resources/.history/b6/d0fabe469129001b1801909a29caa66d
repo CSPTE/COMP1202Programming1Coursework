@@ -1,0 +1,12 @@
+import java.util.ArrayList;
+
+public class Guild {
+	//String name;
+	ArrayList<Character> guildMembers = new ArrayList<Character>();
+	public Guild() {
+		
+	}
+	public void addMember() {
+		
+	}
+}

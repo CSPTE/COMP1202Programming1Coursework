@@ -1,0 +1,10 @@
+
+public class MechStudent extends Student {
+	public MechStudent(String inputName) {
+		super(inputName, 6, 7, 7, 5, 3);
+		//name, hp, atk, def, spd, kp
+	}
+	public void robotInvasion() throws KPException, CharacterDeadException {
+		
+	}
+}

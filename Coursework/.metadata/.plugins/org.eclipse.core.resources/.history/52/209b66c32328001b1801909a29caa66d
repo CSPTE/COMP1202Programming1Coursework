@@ -1,0 +1,56 @@
+
+public class StudentTeam extends Team {
+	public StudentTeam(String inputName) {
+		super(inputName);
+	}
+	void move(Character member, Team enemyTeam) throws Exception {
+		if (member.currentHP > 0) {
+			Character target = null;
+			Character reserve;
+			for (Character enemy : enemyTeam.getMembers()) {
+				target = enemy;
+			}
+			for (Character enemy : enemyTeam.getMembers()) {
+				if(enemy instanceof Boss) {
+					target = enemy;
+				} else if(!(target instanceof Boss)) {
+					reserve = enemy;
+					if(reserve.currentHP < target.currentHP) {
+						target = reserve;
+					}
+				}
+			}
+			if (member instanceof AIStudent) {
+				if(member.currentHP >= (member.maxHP/2)) {
+					if(((Student) member).currentKP == ((Student) member).maxKP) {
+						((CyberStudent) member).machineLearning(enemyTeam);
+					} else {
+						
+					}
+			}
+			if (member instanceof CSStudent) {
+				if(((Student) member).currentKP == ((Student) member).maxKP) {
+					
+				}
+			}
+			if (member instanceof SEStudent) {
+				if(((Student) member).currentKP == ((Student) member).maxKP) {
+					
+				}
+			}
+			if (member instanceof CyberStudent) {
+				if(member.currentHP >= (member.maxHP/2)) {
+					if(((Student) member).currentKP == ((Student) member).maxKP) {
+						((CyberStudent) member).cyberAttack(enemyTeam);
+					} else {
+						((Student) member).javaProgramming(target);
+					}
+				} else {
+					((Student) member).selfStudy();
+				}
+			}
+		} else if(member.currentHP <= 0) {
+			throw new CharacterDeadException("Character is Dead");
+		}
+	}
+}

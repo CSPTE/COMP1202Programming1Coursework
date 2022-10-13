@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=CSStudent
+comment1.params=inputName
+comment1.target=CSStudent(java.lang.String)
+comment2.params=friend\ enemy
+comment2.target=int\ pairWorking(Character,\ Character)
+comment3.params=friend
+comment3.target=void\ support(Character)
+numComments=4
